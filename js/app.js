@@ -22,18 +22,18 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ];
 
-// 1. Uniamo i 3 array di sopra in un array di oggetti
-// let cities = [];
+// // 1. Uniamo i 3 array di sopra in un array di oggetti
+// const data = [];
 
 // for (let i = 0; i < images.length; i++) {
-//     cities.push({
+//     data.push({
 //         image: images[i],
 //         title: title[i],
 //         text : text[i]
 //     });
 // }
 
-// console.log(cities);
+// console.log(data);
 
 // const itemsContainer  = document.querySelector('.items');
 // const thumbsContainer = document.getElementsByClassName('thumbs')[0]; // document.querySelector('.thumbs')
@@ -122,6 +122,36 @@ const text = [
 //     }
 // }
 
+
+const cities = [
+    {
+        image: 'img/01.jpg',
+        title: 'Svezia', 
+        text: 'Lorem ipsum, dolor sit amet consectetur adipisicin…ent totam omnis, magnam dolores dolorum corporis.'
+    },
+    {
+        image: 'img/02.jpg', 
+        title: 'Svizzera', 
+        text: 'Lorem ipsum'
+    },
+    {
+        image: 'img/03.jpg', 
+        title: 'Gran Bretagna', 
+        text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
+    },
+    {
+        image: 'img/04.jpg', 
+        title: 'Germania', 
+        text: 'Lorem ipsum, dolor sit amet consectetur adipisicin…leniti aut veniam inventore eligendi ex ad ullam,'
+    },
+    {
+        image: 'img/05.jpg', 
+        title: 'Paradise', 
+        text: 'Et temporibus voluptatum suscipit tempore aliquid …leniti aut veniam inventore eligendi ex ad ullam,'
+    },
+];
+let currentSlide = 0;
+
 const app = new Vue(
     {
         el: '#root',
@@ -154,6 +184,47 @@ const app = new Vue(
                 },
             ]
         },
-        methods: '' ,
+        methods: {
+
+            prevImg: function() {
+
+                // se sono alla prima, mi posiziono sull'ultima
+                if (currentSlide == 0) {
+                    currentSlide = cities.length - 1; // ultima
+                } else {
+                    currentSlide--; // precedente
+                }
+            
+                console.log('Prev', currentSlide);
+                changeActive(currentSlide);
+            },
+
+            nextImg: function() {
+
+                // se sono all'ultima, mi posiziono sulla prima
+                if (currentSlide == cities.length - 1) {
+                    currentSlide = 0; // prima
+                } else {
+                    currentSlide++; // successiva
+                }
+            
+                console.log('Next', currentSlide);
+                changeActive(currentSlide);
+            },
+
+        }
     }
 )
+
+
+
+function changeActive(index) {
+
+    // togliamo la classe active dall'item
+    document.querySelector('.item.active').classList.remove('active');
+    document.querySelector('.thumb.active').classList.remove('active');
+
+    // aggiungiamo la classe active all'item corrente
+    document.querySelectorAll('.item')[index].classList.add('active');
+    document.querySelectorAll('.thumb')[index].classList.add('active');
+}
