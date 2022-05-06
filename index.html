@@ -14,15 +14,15 @@
 
         <div class="container">
             <div class="items">
-                <!--
-                <div class="item active">
-                    <img src="./img/01.jpg" alt="">
+                
+                <div class="item active" v-for="city in cities">
+                    <img :src="city.image" alt="">
                     <div class="text">
-                        <h3>Lorem</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.</p>
+                        <h3>{{ city.title }}</h3>
+                        <p>{{ city.text }}</p>
                     </div>
                 </div>
-                -->
+               
             </div>
             <div class="thumbs">
                 <!--
@@ -35,7 +35,7 @@
             </div>
        </div>
 
-       
+        
     </div>
     
 
